@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lohnsteuer ≠ Reichensteuer — Makerus Consulting</title>
+  <meta name="description" content="Gleiches Gehalt, 500 € mehr Netto — jeden Monat. Robert erklärt in 5 Minuten, wie du deine Lohnsteuer senken kannst." />
+
+  <!-- Open Graph / Instagram / WhatsApp / Facebook / LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://robertschwagerus.github.io/video/" />
+  <meta property="og:title" content="Lohnsteuer ≠ Reichensteuer — Makerus Consulting" />
+  <meta property="og:description" content="Gleiches Gehalt, 500 € mehr Netto — jeden Monat. Robert erklärt in 5 Minuten, wie du deine Lohnsteuer senken kannst." />
+  <meta property="og:image" content="https://robertschwagerus.github.io/video/video-poster.jpg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lohnsteuer ≠ Reichensteuer — Makerus Consulting" />
+  <meta name="twitter:description" content="Gleiches Gehalt, 500 € mehr Netto — jeden Monat. Robert erklärt in 5 Minuten, wie du deine Lohnsteuer senken kannst." />
+  <meta name="twitter:image" content="https://robertschwagerus.github.io/video/video-poster.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #0f2040;
+      --navy-light: #162a50;
+      --gold: #c9a84c;
+      --gold-light: #e2c26a;
+      --gold-dark: #a8882e;
+      --white: #ffffff;
+      --off-white: #f4f6fa;
+      --text-light: #94a3b8;
+      --text-mid: #cbd5e1;
+      --border: rgba(201, 168, 76, 0.2);
+      --shadow: 0 20px 60px rgba(0,0,0,0.4);
+      --radius: 16px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2 { line-height: 1.15; font-weight: 800; letter-spacing: -0.02em; }
+    img, video { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ============ NAV ============ */
+    nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      padding: 22px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .nav-logo {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    /* ============ HERO ============ */
+    .hero {
+      padding: 90px 0 32px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.06), transparent 60%),
+        var(--navy);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.3rem, 5.6vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+      margin-bottom: 22px;
+      white-space: nowrap;
+    }
+    .hero h1 .neq {
+      color: var(--gold);
+      display: inline-block;
+      margin: 0 0.04em;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      color: var(--text-mid);
+      max-width: 680px;
+      line-height: 1.55;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+    .hero-sub strong { color: var(--gold-light); font-weight: 700; }
+    .br-mobile { display: none; }
+
+    /* ============ VIDEO ============ */
+    .video-section {
+      padding: 40px 0 20px;
+    }
+
+    /* ============ CTA UNTER VIDEO ============ */
+    .cta-under-video {
+      text-align: center;
+      padding: 32px 0 80px;
+    }
+    .mission-line {
+      color: var(--gold);
+      font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.4;
+      max-width: 640px;
+      margin: 28px auto 0;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 20px 38px;
+      border-radius: 12px;
+      min-height: 60px;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      box-shadow: 0 12px 34px rgba(201, 168, 76, 0.3);
+      letter-spacing: -0.01em;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(201, 168, 76, 0.45);
+    }
+    .btn-primary svg { width: 18px; height: 18px; }
+    .cta-sub {
+      display: block;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.55;
+    }
+    @media (max-width: 560px) {
+      .btn-primary { width: 100%; font-size: 1rem; padding: 18px 24px; }
+    }
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(10, 22, 40, 0.15) 0%, rgba(10, 22, 40, 0.55) 100%);
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+    .play-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .play-btn {
+      width: 92px; height: 92px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 40px rgba(201, 168, 76, 0.35);
+      transition: transform 0.2s ease;
+    }
+    .play-btn:hover { transform: scale(1.05); background: var(--gold-light); }
+    .play-btn svg { width: 32px; height: 32px; color: var(--navy); margin-left: 4px; }
+
+    /* ============ FAQ (1:1 aus Ref-Seite) ============ */
+    .faq {
+      padding: 80px 0 100px;
+      border-top: 1px solid var(--border);
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: rgba(201, 168, 76, 0.1);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .faq-header h2 {
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .faq-grid {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: var(--navy-mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      transition: border-color 0.2s ease;
+      overflow: hidden;
+    }
+    .faq-item.open { border-color: var(--gold); }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      text-align: left;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--white);
+      padding: 22px 24px;
+      letter-spacing: -0.01em;
+    }
+    .faq-icon {
+      font-size: 1.3rem;
+      color: var(--text-light);
+      transition: transform 0.25s ease, color 0.25s ease;
+      flex-shrink: 0;
+      margin-left: 16px;
+      font-weight: 400;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+      color: var(--gold);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+      padding: 0 24px 22px;
+    }
+    .faq-answer p {
+      color: var(--text-mid);
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    footer a { color: var(--text-light); text-decoration: none; margin: 0 12px; transition: color 0.15s ease; }
+    footer a:hover { color: var(--gold); }
+    footer .copy { margin-top: 12px; font-size: 0.8rem; }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 700px) {
+      .nav-logo { font-size: 1rem; }
+      .hero { padding: 78px 0 16px; }
+      .video-section { padding: 20px 0 12px; }
+      .video-section > .container { padding: 0; }
+      .video-wrap { aspect-ratio: 1 / 1; border-radius: 0; border-left: none; border-right: none; box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+      .cta-under-video { padding: 24px 0 44px; }
+      .mission-line { margin-top: 18px; }
+      .play-btn { width: 64px; height: 64px; }
+      .play-btn svg { width: 24px; height: 24px; }
+      .play-overlay { background: linear-gradient(180deg, rgba(10, 22, 40, 0.25) 0%, rgba(10, 22, 40, 0.65) 100%); }
+      .br-mobile { display: inline; }
+      .faq { padding: 44px 0 60px; }
+      .faq-question { font-size: 0.98rem; padding: 20px 18px; }
+      .container { padding: 0 18px; }
+    }
+    @media (max-width: 420px) {
+      .container { padding: 0 14px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">Makerus<span>.</span></a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Lohnsteuer <span class="neq">≠</span> Reichensteuer</h1>
+      <p class="hero-sub">
+        Gleiches Gehalt.<br class="br-mobile"> <strong>500 € mehr Netto.</strong> Jeden Monat.
+      </p>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <div class="container">
+      <div class="video-wrap">
+        <video
+          id="mainVideo"
+          poster="video-poster.jpg"
+          playsinline
+          preload="none"
+          controls
+        >
+          <source src="robert-video.mp4" type="video/mp4" />
+          Dein Browser unterstützt kein Video-Playback.
+        </video>
+        <div class="play-overlay" id="playOverlay" role="button" aria-label="Video abspielen" tabindex="0">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-under-video">
+        <a href="https://robertschwagerus.github.io/start/analyse.html"
+           target="_blank"
+           rel="noopener"
+           class="btn-primary">
+          Für weniger Steuern klicke hier
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <p class="mission-line">
+          Meine Aufgabe ist es, deine Lohnsteuer in den nächsten 12 Monaten auf null zu bringen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (1:1 aus robertschwagerus.github.io/start) -->
+  <section class="faq">
+    <div class="container">
+      <div class="faq-header">
+        <div class="section-tag">Häufige Fragen</div>
+        <h2>Was Menschen vor dem ersten Gespräch wissen wollen.</h2>
+      </div>
+
+      <div class="faq-grid">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Senken sich meine Steuern sofort?
+            <span class="faq-icon">↓</span>
+          </button>
+          <div class="faq-answer"><p>Ja. Direkt nach dem Notartermin beginnt die steuerliche Wirkung. Du kannst Zinsen, Abschreibung und Bewirtschaftungskosten von der Steuer absetzen und das reduziert dein zu versteuerndes Einkommen noch im ersten Jahr. Wie viel das bei dir konkret ausmacht, rechnen wir dir im Erstgespräch durch.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Kann ich ohne Eigenkapital kaufen?
+            <span class="faq-icon">↓</span>
+          </button>
+          <div class="faq-answer"><p>Ja, das ist möglich. Banken finanzieren bei ausreichender Bonität den kompletten Kaufpreis inklusive Nebenkosten. Voraussetzung ist ein solides Einkommen und eine saubere Schufa. Ob das bei dir funktioniert, klären wir gemeinsam im ersten Gespräch.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Wo stehen eure Immobilien?
+            <span class="faq-icon">↓</span>
+          </button>
+          <div class="faq-answer"><p>Wir konzentrieren uns auf deutsche Städte mit stabiler Mietnachfrage, überwiegend Nordrhein-Westfalen und angrenzende Regionen. Keine Großstadtpreise, aber solide Mieten und gute Wertstabilität. Welche Objekte aktuell verfügbar sind, zeigen wir dir im Gespräch.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Wie lange dauert der Prozess?
+            <span class="faq-icon">↓</span>
+          </button>
+          <div class="faq-answer"><p>Von der ersten Beratung bis zum Notartermin vergehen im Schnitt sechs bis zwölf Wochen. Wer gut vorbereitet ins Erstgespräch kommt, ist meistens schneller.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Kümmert ihr euch auch um die Finanzierung?
+            <span class="faq-icon">↓</span>
+          </button>
+          <div class="faq-answer"><p>Ja. Wir begleiten dich von der Objektauswahl über die Finanzierung bis zum Notartermin. Du musst dich um nichts alleine kümmern.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Ist nach der ersten Immobilie Schluss?
+            <span class="faq-icon">↓</span>
+          </button>
+          <div class="faq-answer"><p>Für die meisten ist sie der Anfang. Viele in unserer Community haben nach der ersten Immobilie eine zweite gekauft, dann eine dritte. Wir begleiten dich langfristig, nicht nur einmalig.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Welche Risiken gibt es?
+            <span class="faq-icon">↓</span>
+          </button>
+          <div class="faq-answer"><p>Leerstand, Zinsänderungen und unerwartete Reparaturen sind reale Risiken. Wir rechnen sie von Anfang an ein und zeigen dir nur Objekte, die auch im schlechten Szenario noch funktionieren. Wer das nicht tut, lügt seinen Kunden an.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Was kostet das Erstgespräch?
+            <span class="faq-icon">↓</span>
+          </button>
+          <div class="faq-answer"><p>Nichts. Kein Haken, kein versteckter Pitch. Wir schauen uns deine Situation an und sagen dir ehrlich, ob eine Immobilie für dich Sinn ergibt. Die Entscheidung liegt bei dir.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <a href="https://makerus-consulting.de/impressum/" target="_blank" rel="noopener">Impressum</a>
+      <a href="https://makerus-consulting.de/datenschutz/" target="_blank" rel="noopener">Datenschutz</a>
+      <div class="copy">© 2026 Makerus Consulting</div>
+    </div>
+  </footer>
+
+  <script>
+    // Video Play-Overlay
+    (function() {
+      const video   = document.getElementById('mainVideo');
+      const overlay = document.getElementById('playOverlay');
+      if (!video || !overlay) return;
+      const play = () => {
+        overlay.classList.add('hidden');
+        video.play().catch(() => { overlay.classList.remove('hidden'); });
+      };
+      overlay.addEventListener('click', play);
+      overlay.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+      });
+      video.addEventListener('ended', () => overlay.classList.remove('hidden'));
+    })();
+
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const open = item.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>
