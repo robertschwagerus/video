@@ -24,6 +24,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
+  <!-- PostHog Analytics (EU, DSGVO: Inputs maskiert, keine 3rd-party-Cookies) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_BCFSFfumSXa8aHAGkWzammvNik8RtVym6rZSVhaobeat', {
+      api_host: 'https://eu.i.posthog.com',
+      person_profiles: 'identified_only',
+      autocapture: true,
+      capture_pageview: true,
+      capture_pageleave: true,
+      capture_exceptions: true,
+      session_recording: { maskAllInputs: true }
+    });
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -525,8 +539,64 @@
         const item = btn.closest('.faq-item');
         const open = item.classList.toggle('open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        ph('faq_toggle', { question: btn.firstChild.textContent.trim().slice(0, 80), opened: open });
       });
     });
+
+    // ===== Tracking =====
+    function ph(name, props) {
+      if (window.posthog && posthog.capture) posthog.capture(name, props || {});
+    }
+
+    // Video-Quartile + Play-Events
+    (function() {
+      const v = document.getElementById('mainVideo');
+      if (!v) return;
+      const fired = { play: false, q25: false, q50: false, q75: false, q100: false };
+      let unmuted = false;
+      v.addEventListener('play', () => {
+        if (!fired.play) { fired.play = true; ph('video_play', { duration: Math.round(v.duration || 0), muted: v.muted }); }
+      });
+      v.addEventListener('volumechange', () => {
+        if (!v.muted && !unmuted) { unmuted = true; ph('video_unmute', { at: Math.round(v.currentTime) }); }
+      });
+      v.addEventListener('timeupdate', () => {
+        if (!v.duration) return;
+        const pct = (v.currentTime / v.duration) * 100;
+        if (pct >= 25 && !fired.q25) { fired.q25 = true; ph('video_25', { duration: Math.round(v.duration) }); }
+        if (pct >= 50 && !fired.q50) { fired.q50 = true; ph('video_50', { duration: Math.round(v.duration) }); }
+        if (pct >= 75 && !fired.q75) { fired.q75 = true; ph('video_75', { duration: Math.round(v.duration) }); }
+      });
+      v.addEventListener('ended', () => {
+        if (!fired.q100) { fired.q100 = true; ph('video_100', { duration: Math.round(v.duration || 0) }); }
+      });
+    })();
+
+    // CTA-Klick + UTM-Forward zum Funnel
+    (function() {
+      const cta = document.querySelector('.cta-under-video .btn-primary');
+      if (!cta) return;
+      const incoming = new URLSearchParams(window.location.search);
+      const url = new URL(cta.href);
+      let hadUtm = false;
+      for (const [k, val] of incoming) {
+        if (k.startsWith('utm_') || k === 'ref') { url.searchParams.set(k, val); hadUtm = true; }
+      }
+      if (!url.searchParams.has('utm_source')) {
+        url.searchParams.set('utm_source', 'videolp');
+        url.searchParams.set('utm_medium', 'cta');
+      }
+      cta.href = url.toString();
+      cta.addEventListener('click', () => {
+        const v = document.getElementById('mainVideo');
+        ph('cta_click', {
+          cta_location: 'under_video',
+          video_time: v ? Math.round(v.currentTime) : null,
+          video_pct: v && v.duration ? Math.round((v.currentTime / v.duration) * 100) : null,
+          had_incoming_utm: hadUtm
+        });
+      });
+    })();
   </script>
 
 </body>
